@@ -21,11 +21,9 @@ const Login = () => {
     }
     axios.post(`${url}/user/login`,data).then((res)=>
   {
-    console.log("login")
     
     if(res.data.token)
     {
-      console.log(res.data);
       obj.updcont(res.data)
       navigate("/")
 
@@ -41,7 +39,6 @@ const Login = () => {
 })
     
   }
-  console.log(data);
   return (
     <div className='lcon'>
       <h1>LOGIN</h1>

@@ -20,7 +20,6 @@ const Reg = () =>
   }
   function regis()
   {
-    console.log(data);
     
     
 

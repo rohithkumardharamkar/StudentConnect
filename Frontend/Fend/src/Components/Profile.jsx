@@ -1,10 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Ct from './Ct'
 import { url } from '../url';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   let obj=useContext(Ct)
-  console.log(obj);
+  let n=useNavigate()
+  useEffect(()=>
+  {
+
+    if(obj.cont.token=='')
+      {
+        n('/')
+      }
+  },[])
+ 
   return (
    <>
     <div className='profile'>

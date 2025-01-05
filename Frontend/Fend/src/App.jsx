@@ -10,6 +10,8 @@ import Ct from './Components/Ct'
 import Logout from './Components/Logout'
 import ChatAi from './Components/ChatAi'
 import Fav from './Components/Fav'
+import { Provider } from 'react-redux'
+import store from './utils/store'
 const App = () => {
 
 
@@ -20,6 +22,7 @@ const App = () => {
   let obj={"cont":cont,"updcont":updcont}
   return (
     <BrowserRouter>
+    <Provider store={store}>
     <Ct.Provider value={obj}>
     <Nav/>
     <Routes>
@@ -30,10 +33,11 @@ const App = () => {
       <Route path='/reg' element={<Reg/>}/>
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/chat' element={<ChatAi/>}/>
-      <Route path='/favs' element={<Fav/>}/>
+      <Route path='/fav' element={<Fav/>}/>
       
     </Routes>
     </Ct.Provider>
+    </Provider>
     </BrowserRouter>
   )
 }

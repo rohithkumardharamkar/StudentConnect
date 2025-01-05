@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import Ct from './Ct'
 import { useNavigate } from 'react-router-dom'
 import { url } from '../url'
+import {useDispatch } from 'react-redux'
+import { addpost } from '../utils/postSlice'
 
 const Home = () => {
   let obj=useContext(Ct)
@@ -10,7 +12,17 @@ const Home = () => {
   let [r,setR]=useState([])
   let [c,setC]=useState(0);
   
-  let nav=useNavigate()
+  let nav=useNavigate();
+  let dispatch=useDispatch();
+  useEffect(()=>
+  {
+
+    if(obj.cont.token=='')
+      {
+        nav('/')
+      }
+  },[])
+ 
   
   
   useEffect(()=>
@@ -51,6 +63,12 @@ const Home = () => {
     
   }
   
+  function saved(e)
+  {
+    console.log(e);
+    dispatch(addpost(e))
+    
+  }
   return (
     <div>
       {
@@ -81,6 +99,7 @@ const Home = () => {
           <input type="text"  placeholder='Comment' />
           <button>Post Comment anonymousy</button>
           <button>Show all Comments</button>
+          <button onClick={()=>saved(item)}>Save</button>
         </div>
 
 

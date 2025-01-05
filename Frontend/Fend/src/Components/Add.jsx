@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Ct from './Ct'
@@ -6,7 +6,17 @@ import { url } from '../url'
 const Add = () => {
   let [data,setData]=useState({})
   let obj=useContext(Ct)
-  let nav=useNavigate()
+  let n=useNavigate()
+  useEffect(()=>
+  {
+
+    if(obj.cont.token=='')
+      {
+        n('/')
+      }
+  },[])
+ 
+  
   data={...data,"pic":obj.cont.img,"picname":obj.cont.name}
   let fun=(e)=>
   {
@@ -19,16 +29,13 @@ const Add = () => {
   let add=()=>
   {
     let a=new FormData()
-    console.log(a);
     
     for(let i in data)
     {
       a.append(i,data[i])
     }
-    console.log(a);
     axios.post(`${url}/post/addpost`,a).then((res)=>
     {
-      console.log(res.data);
       nav("/")
     })
 

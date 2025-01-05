@@ -1,8 +1,24 @@
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { url } from "../url";
+import { useNavigate } from "react-router-dom";
+import Ct from "./Ct";
 
 function ChatAi()
 {
+    
+    
+    let obj=useContext(Ct)
+    let n=useNavigate()
+    useEffect(()=>
+    {
+  
+      if(obj.cont.token=='')
+        {
+          n('/')
+        }
+    },[])
+   
     let [c,setC]=useState([]);
     let t=useRef()
     function fun()
@@ -10,11 +26,11 @@ function ChatAi()
         setC([...c,t.current.value])
         setC([...c,t.current.value])
       
-            axios.post("http://localhost:5000/post/bot",{"qsn":t.current.value}).then((el)=>{
+            axios.post(`${url}/post/bot`,{"qsn":t.current.value}).then((el)=>{
                 setC([...c,el.data])
             })
     }
-    return(<div>
+    return(<div children="blac">
         <div className="textcon">
             <div>
                 
