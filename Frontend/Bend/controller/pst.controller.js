@@ -82,7 +82,6 @@ let chatai = async (req, res) => {
     const prompt = req.body.qsn;
 
     const result = await model.generateContent(prompt);
-    console.log(result.response.text());
     res.json(result.response.text());
 
   }

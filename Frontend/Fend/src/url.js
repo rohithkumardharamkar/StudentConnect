@@ -1,1 +1,1 @@
-export let url="http://localhost:5500";
+export let url="https://studentconnect-ugav.onrender.com";
